@@ -32,7 +32,11 @@ class TicTacToe
   end
 
   def position_taken?(location)
+<<<<<<< HEAD
     @board[location] != " " && @board[location] != ""
+=======
+    @board[location] != "X" && @board[location] != "O"
+>>>>>>> f46dbd33b1c984a53cb7b4b43c1fd669e98bb4c2
   end
 
   def valid_move?(index)
@@ -51,6 +55,7 @@ class TicTacToe
       turn
     end
   end
+<<<<<<< HEAD
 
 
   def turn_count
@@ -62,6 +67,19 @@ class TicTacToe
     end
     return turns
   end
+=======
+end
+
+def turn_count
+  turns = 0
+  @board.each do |space|
+    if space == "X" || space == "O"
+      turns +=1
+    end
+  end
+  return turns
+end
+>>>>>>> f46dbd33b1c984a53cb7b4b43c1fd669e98bb4c2
 
   def current_player
     number_of_turns = turn_count
@@ -72,6 +90,7 @@ class TicTacToe
     end
   end
 
+<<<<<<< HEAD
   def won?
     WIN_COMBINATIONS.each do |winning_combination|
       if (@board[winning_combination[0]] == "X" && @board[winning_combination[1]] == "X" && @board[winning_combination[2]] == "X" || @board[winning_combination[0]] == "O" && @board[winning_combination[1]] == "O" && @board[winning_combination[2]] == "O")
@@ -124,4 +143,61 @@ class TicTacToe
       end
   end
 
+=======
+def won?
+  WIN_COMBINATIONS.each do |winning_combination|
+    if (@board[winning_combination[0]] == "X" && @board[winning_combination[1]] == "X" && @board[winning_combination[2]] == "X" || @board[winning_combination[0]] == "O" && @board[winning_combination[1]] == "O" && @board[winning_combination[2]] == "O")
+      return winning_combination
+    end
+  end
+  return false
+end
+
+
+def full?
+  @board.all? { |x| x == "X" || x == "O"}
+end
+
+def draw?
+  !won? && full?
+  if full? && !won?
+    return true
+  elsif !won? && !full? || !won?
+    return false
+  end
+end
+
+def over?
+  if draw? || full? || won?
+    return true
+  else
+    return false
+  end
+end
+
+def winner
+  if !won?
+    return nil
+  else
+    winning_combination = won?
+    return @board[winning_combination[0]]
+  end
+end
+
+# Define your play method below
+def play
+  until over?
+    turn
+  end
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
+  turns = 0
+  while turns < 9
+    turn
+    turns += 1
+  end
+>>>>>>> f46dbd33b1c984a53cb7b4b43c1fd669e98bb4c2
 end
